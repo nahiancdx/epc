@@ -217,7 +217,11 @@
   .btn-secondary:hover { border-color: var(--white); transform: translateY(-1px); }
 
   .hero-right {
-    background: #1a1814;
+    /* background: #1a1814; */
+
+background-image: url("/imgb.jpg");
+
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -286,6 +290,10 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .overlay {
+    background-color: #1a1814;
   }
 
   .strip-dot { width: 4px; height: 4px; background: var(--black); border-radius: 50%; opacity: 0.4; }
@@ -678,7 +686,8 @@
     </div>
   </div>
   <div class="hero-right">
-    <span class="hero-tag">Discount Superstore</span>
+    <div class="overlay">
+      <span class="hero-tag">Discount Superstore</span>
     <div class="hero-stat-grid">
       <div class="hero-stat">
         <div class="stat-num">30+</div>
@@ -698,6 +707,7 @@
       </div>
     </div>
   </div>
+    </div>
 </section>
 
 <!-- STRIP -->
