@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Penny Counts — Discount Superstore, Buckley</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0e;
+    --white: #f8f6f1;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --mid: #6b6560;
+    --border: #e2ddd7;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #b8962e !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 64px);
+    max-height: 800px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5% 6% 5% 7%;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -60px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(248,246,241,0.65);
+    font-weight: 300;
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: #b8962e; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(248,246,241,0.25);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { border-color: var(--white); transform: translateY(-1px); }
+
+  .hero-right {
+    background: #1a1814;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .hero-stat {
+    padding: 2rem 1.8rem;
+    background: #1a1814;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(248,246,241,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .hero-tag {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(248,246,241,0.25);
+    writing-mode: vertical-rl;
+  }
+
+  /* STRIP */
+  .strip {
+    background: var(--gold);
+    padding: 0.9rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .strip-item {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .strip-dot { width: 4px; height: 4px; background: var(--black); border-radius: 50%; opacity: 0.4; }
+
+  /* ABOUT */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-text {
+    padding: 7% 6% 7% 7%;
+    border-right: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--black);
+  }
+
+  .section-body {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 440px;
+  }
+
+  .section-body p + p { margin-top: 1rem; }
+
+  .about-visual {
+    padding: 7% 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .about-point {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-point:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .point-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    width: 2rem;
+    line-height: 1;
+    padding-top: 0.1rem;
+  }
+
+  .point-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: var(--black);
+  }
+
+  .point-desc {
+    font-size: 0.85rem;
+    color: var(--mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* CATEGORIES */
+  .categories {
+    padding: 6% 7%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cat-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .cat-item {
+    background: var(--white);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .cat-item:hover { background: #f0ede6; }
+
+  .cat-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .cat-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--black);
+    text-transform: uppercase;
+  }
+
+  /* DIFFERENCE */
+  .difference {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .diff-left {
+    padding: 7% 6% 7% 7%;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .diff-right {
+    padding: 7% 7% 7% 6%;
+  }
+
+  .diff-text {
+    font-size: 0.95rem;
+    color: rgba(248,246,241,0.6);
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 440px;
+  }
+
+  .diff-highlight {
+    margin-top: 2.5rem;
+    padding: 1.8rem;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-left: 3px solid var(--gold);
+  }
+
+  .diff-highlight p {
+    font-size: 1rem;
+    color: rgba(248,246,241,0.85);
+    font-weight: 300;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .brands-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.8);
+    margin-bottom: 1.5rem;
+  }
+
+  .brands-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 2rem;
+  }
+
+  .brand-tag {
+    background: rgba(255,255,255,0.02);
+    padding: 1rem 1.2rem;
+    font-size: 0.8rem;
+    color: rgba(248,246,241,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  /* CONTACT */
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-left {
+    padding: 7% 6% 7% 7%;
+    border-right: 1px solid var(--border);
+  }
+
+  .contact-right {
+    padding: 7% 7% 7% 6%;
+    background: #f5f2ec;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  .contact-item:last-child { margin-bottom: 0; }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--black);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  .contact-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--black);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .contact-value a {
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-light);
+    transition: border-color 0.2s;
+  }
+
+  .contact-value a:hover { border-color: var(--gold); }
+
+  .map-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #e8e4dd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(201,168,76,0.05) 20px,
+      rgba(201,168,76,0.05) 40px
+    );
+  }
+
+  .map-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: rgba(248,246,241,0.4);
+    padding: 2rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  footer a {
+    color: rgba(248,246,241,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--gold); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; max-height: none; }
+    .hero-right { display: none; }
+    .hero-left { padding: 12% 6%; min-height: 90vh; }
+    .about, .difference, .contact { grid-template-columns: 1fr; }
+    .about-text { border-right: none; border-bottom: 1px solid var(--border); padding: 12% 6%; }
+    .about-visual { padding: 8% 6%; }
+    .diff-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 12% 6%; }
+    .diff-right { padding: 8% 6%; }
+    .contact-left { border-right: none; border-bottom: 1px solid var(--border); padding: 12% 6%; }
+    .contact-right { padding: 8% 6%; }
+    .cat-grid { grid-template-columns: repeat(3, 1fr); }
+    .categories { padding: 10% 6%; }
+    .nav-links { display: none; }
+    .strip { gap: 1.5rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge { animation: fadeUp 0.5s ease both; }
+  .hero-title { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-actions { animation: fadeUp 0.5s 0.3s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Every <span>Penny</span> Counts</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#contact">Directions</a></li>
+    <li><a href="#" class="nav-cta">Shop Online</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-badge">Buckley, North Wales · Est. 30+ Years</span>
+    <h1 class="hero-title">Top Brands.<br>Rock Bottom <em>Prices.</em></h1>
+    <p class="hero-sub">We buy end-of-line, surplus, and clearance stock from the UK's largest mail order and retail companies — and pass those savings directly to you.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Shop Online</a>
+      <a href="#contact" class="btn-secondary">Find the Store</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <span class="hero-tag">Discount Superstore</span>
+    <div class="hero-stat-grid">
+      <div class="hero-stat">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">50%+</div>
+        <div class="stat-label">Off Retail Prices</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Days a Week Open</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">Daily</div>
+        <div class="stat-label">New Stock Arrives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <span class="strip-item">✦ Open 7 Days a Week</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">✦ New Stock Every Day</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">✦ Over Half Off Normal Prices</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">✦ Shop Online or In-Store</span>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">We've Been Finding Bargains for Over 30 Years</h2>
+    <div class="section-body">
+      <p>Every Penny Counts is a discount superstore based in Buckley, North Wales. For over three decades, we've been buying end-of-line, surplus, and clearance goods from some of the UK's largest mail order and retail companies.</p>
+      <p>Because retailers need to clear old stock to make way for new lines, we get exceptional deals — and we pass every penny of those savings on to you. Top brand names at prices you won't find on the high street.</p>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="about-point">
+      <span class="point-num">01</span>
+      <div>
+        <p class="point-title">Ex-Catalogue & Clearance Stock</p>
+        <p class="point-desc">Surplus and returns from the UK's biggest mail order companies — clothing, electricals, toys, furniture, and more.</p>
+      </div>
+    </div>
+    <div class="about-point">
+      <span class="point-num">02</span>
+      <div>
+        <p class="point-title">Stock Changes Daily</p>
+        <p class="point-desc">We add new stock constantly. You never know what you'll find — which is half the fun.</p>
+      </div>
+    </div>
+    <div class="about-point">
+      <span class="point-num">03</span>
+      <div>
+        <p class="point-title">Online or In-Store</p>
+        <p class="point-desc">Browse and buy through our online store, or visit us in Buckley — we're open seven days a week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="cat-header">
+    <div>
+      <p class="section-label">What We Sell</p>
+      <h2 class="section-title" style="margin-bottom: 0;">Something for Everyone</h2>
+    </div>
+    <a href="#" class="btn-primary" style="font-size: 0.78rem; padding: 0.65rem 1.5rem;">Browse Online Store →</a>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-item">
+      <span class="cat-icon">👗</span>
+      <span class="cat-name">Clothing</span>
+    </div>
+    <div class="cat-item">
+      <span class="cat-icon">👟</span>
+      <span class="cat-name">Footwear</span>
+    </div>
+    <div class="cat-item">
+      <span class="cat-icon">⚡</span>
+      <span class="cat-name">Electrical</span>
+    </div>
+    <div class="cat-item">
+      <span class="cat-icon">🧸</span>
+      <span class="cat-name">Toys</span>
+    </div>
+    <div class="cat-item">
+      <span class="cat-icon">🛋️</span>
+      <span class="cat-name">Furniture</span>
+    </div>
+    <div class="cat-item">
+      <span class="cat-icon">🏠</span>
+      <span class="cat-name">Household</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENCE -->
+<section class="difference">
+  <div class="diff-left">
+    <p class="section-label" style="color: rgba(201,168,76,0.8);">What Makes Us Different</p>
+    <h2 class="section-title" style="color: var(--white);">Savings You Can Actually See</h2>
+    <p class="diff-text">Most discount stores buy cheap to sell cheap. We buy premium — end-of-line stock from the UK's biggest retailers and mail order companies — at prices they need to clear fast. That means you get genuine brand-name products at a fraction of what you'd pay anywhere else.</p>
+    <div class="diff-highlight">
+      <p>"Our stock changes every single day. Come in Monday and Friday and you'll find a completely different store."</p>
+    </div>
+  </div>
+  <div class="diff-right">
+    <p class="brands-label">Stock Sources Include</p>
+    <div class="brands-grid">
+      <div class="brand-tag">Mail Order Catalogues</div>
+      <div class="brand-tag">Retail Clearance</div>
+      <div class="brand-tag">Customer Returns</div>
+      <div class="brand-tag">End of Line</div>
+      <div class="brand-tag">Surplus Stock</div>
+      <div class="brand-tag">Overstock Goods</div>
+    </div>
+    <p class="diff-text" style="font-size: 0.88rem;">We are open <strong style="color: var(--white);">seven days a week</strong> and add new stock continuously. There's always a reason to come back.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <p class="section-label">Visit Us</p>
+    <h2 class="section-title">Find the Store</h2>
+    <div class="section-body" style="margin-bottom: 2.5rem;">
+      <p>We're located in the heart of Buckley, just near the Tivoli Night Club. Easy to find, free to browse.</p>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <p class="contact-label">Address</p>
+        <p class="contact-value">Central Point, Buckley, CH7 2EH<br>North Wales</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <p class="contact-label">Email</p>
+        <p class="contact-value"><a href="mailto:admin@epclimited.co.uk">admin@epclimited.co.uk</a></p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <p class="contact-label">Opening Hours</p>
+        <p class="contact-value">Open 7 days a week</p>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="map-placeholder">
+      <span class="map-label">Buckley, North Wales · CH7 2EH</span>
+    </div>
+    <a href="https://maps.google.com/?q=Every+Penny+Counts+Buckley" target="_blank" class="btn-primary" style="text-align:center; display:block;">Open in Google Maps →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© Every Penny Counts Ltd — Buckley, North Wales</span>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="#">Online Store</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
